@@ -1,15 +1,31 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	if(low <= high)
+	{
+		int middle = (int)((high + low)/2);
+
+		if(value == numbers[middle])
+			return middle;
+
+		else if(value < numbers[middle])
+			search(numbers, low, middle - 1, value);
+
+		else if(value > numbers[middle])
+			search(numbers, middle + 1, high, value);
+	}
+
+	else 
+		return -1;
 }
 
 void printArray(int numbers[], int sz)
 {
 	int i;
 	printf("Number array : ");
-	for (i = 0;i<sz;++i)
+	for (i = 0; i<sz; ++i)
 	{
 		printf("%d ",numbers[i]);
 	}
